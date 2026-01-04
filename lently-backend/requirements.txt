@@ -1,0 +1,11 @@
+fastapi
+uvicorn[standard]
+python-dotenv
+pydantic
+pydantic-settings
+httpx
+firebase-admin
+google-api-python-client
+google-auth-oauthlib
+google-generativeai
+slowapi
