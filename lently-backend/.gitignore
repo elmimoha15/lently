@@ -1,0 +1,39 @@
+# Backend-specific .gitignore
+
+# Firebase Admin SDK service account keys
+*-firebase-adminsdk-*.json
+lently-saas-firebase-adminsdk-*.json
+
+# Environment variables (backup)
+.env
+.env.local
+.env.production
+.env.development
+
+# Python virtual environment
+venv/
+.venv/
+env/
+.env/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Logs
+*.log
+logs/
+
+# Database files
+*.sqlite
+*.db
+
+# Test files
+.pytest_cache/
+.coverage
+
+# IDE files
+.vscode/
+.idea/

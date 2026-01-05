@@ -11,8 +11,15 @@ class Settings(BaseSettings):
     # Google Cloud Configuration
     google_cloud_project: str
     
-    # Firebase Configuration
-    firebase_credentials_path: str
+    # Firebase Configuration - Environment Variables (Preferred)
+    firebase_private_key: Optional[str] = None
+    firebase_private_key_id: Optional[str] = None  
+    firebase_client_email: Optional[str] = None
+    firebase_client_id: Optional[str] = None
+    
+    # Firebase Configuration - Alternative methods
+    firebase_credentials_path: Optional[str] = None  # Fallback to JSON file
+    firebase_credentials_base64: Optional[str] = None  # Base64 encoded JSON (for platforms like Heroku)
     
     # API Keys
     gemini_api_key: str

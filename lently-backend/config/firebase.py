@@ -2,28 +2,69 @@ import firebase_admin
 from firebase_admin import credentials, firestore, auth
 from config.settings import settings
 import os
+import json
+import base64
 
 
 # Initialize Firebase Admin SDK
 def initialize_firebase():
     """
-    Initialize Firebase Admin SDK with service account credentials.
+    Initialize Firebase Admin SDK with service account credentials from environment variables.
     This should be called once when the application starts.
     """
     if not firebase_admin._apps:
-        # Check if credentials file exists
-        if os.path.exists(settings.firebase_credentials_path):
-            cred = credentials.Certificate(settings.firebase_credentials_path)
+        try:
+            # Try to load credentials from environment variables first
+            if hasattr(settings, 'firebase_private_key') and settings.firebase_private_key:
+                # Create credentials from environment variables
+                firebase_config = {
+                    "type": "service_account",
+                    "project_id": settings.google_cloud_project,
+                    "private_key_id": settings.firebase_private_key_id,
+                    "private_key": settings.firebase_private_key.replace('\\n', '\n'),  # Handle newlines
+                    "client_email": settings.firebase_client_email,
+                    "client_id": settings.firebase_client_id,
+                    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+                    "token_uri": "https://oauth2.googleapis.com/token",
+                    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+                    "client_x509_cert_url": f"https://www.googleapis.com/robot/v1/metadata/x509/{settings.firebase_client_email.replace('@', '%40')}",
+                    "universe_domain": "googleapis.com"
+                }
+                
+                cred = credentials.Certificate(firebase_config)
+                print("✅ Firebase Admin SDK initialized from environment variables")
+                
+            # Fallback to JSON file if environment variables not available
+            elif hasattr(settings, 'firebase_credentials_path') and os.path.exists(settings.firebase_credentials_path):
+                cred = credentials.Certificate(settings.firebase_credentials_path)
+                print("✅ Firebase Admin SDK initialized from JSON file")
+                print("⚠️  Consider migrating to environment variables for better security")
+                
+            # Try base64 encoded credentials (useful for deployment platforms)
+            elif hasattr(settings, 'firebase_credentials_base64') and settings.firebase_credentials_base64:
+                try:
+                    decoded_creds = base64.b64decode(settings.firebase_credentials_base64)
+                    firebase_config = json.loads(decoded_creds)
+                    cred = credentials.Certificate(firebase_config)
+                    print("✅ Firebase Admin SDK initialized from base64 encoded credentials")
+                except Exception as e:
+                    print(f"❌ Failed to decode base64 credentials: {e}")
+                    raise
+                    
+            else:
+                print("❌ No Firebase credentials found!")
+                print("   Please set environment variables or provide a credentials file.")
+                print("   See documentation for setup instructions.")
+                raise ValueError("Firebase credentials not configured")
+            
             # Initialize with storage bucket
             firebase_admin.initialize_app(cred, {
-                'storageBucket': 'lently-saas.appspot.com'
+                'storageBucket': f"{settings.google_cloud_project}.appspot.com"
             })
-            print("✅ Firebase Admin SDK initialized successfully")
-        else:
-            print(f"⚠️  Warning: Firebase credentials file not found at {settings.firebase_credentials_path}")
-            print("   Firebase functionality will not work until credentials are provided.")
-            # Initialize without credentials for development
-            firebase_admin.initialize_app()
+            
+        except Exception as e:
+            print(f"❌ Failed to initialize Firebase Admin SDK: {e}")
+            raise
 
 
 # Initialize Firebase on module import

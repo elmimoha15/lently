@@ -1,0 +1,353 @@
+# === SECURITY & SENSITIVE FILES ===
+# Environment variables
+.env
+.env.local
+.env.*.local
+.env.production
+.env.development
+.env.test
+
+# Firebase service account keys
+*.json
+# But allow package.json files
+!package.json
+!package-*.json
+!tsconfig*.json
+!components.json
+
+# API keys and secrets
+**/firebase-adminsdk-*.json
+**/service-account*.json
+**/credentials*.json
+**/client-secret*.json
+**/*-key*.json
+**/*-credentials*.json
+*.pem
+*.key
+*.p12
+*.pfx
+
+# AWS credentials
+.aws/
+aws-credentials*
+
+# Google Cloud credentials
+gcloud/
+google-credentials*
+application_default_credentials.json
+
+# === PYTHON/BACKEND ===
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv/
+.ENV/
+.env/
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# === NODE.JS/FRONTEND ===
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+.nyc_output
+
+# Grunt intermediate storage
+.grunt
+
+# Bower dependency directory
+bower_components
+
+# node-waf configuration
+.lock-wscript
+
+# Compiled binary addons
+build/Release
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# TypeScript v1 declaration files
+typings/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# parcel-bundler cache
+.cache
+.parcel-cache
+
+# Next.js build output
+.next
+
+# Nuxt.js build / generate output
+.nuxt
+dist
+
+# Gatsby files
+.cache/
+public
+
+# Storybook build outputs
+.out
+.storybook-out
+
+# Rollup.js default build output
+dist/
+
+# Vite
+dist/
+dist-ssr/
+*.local
+
+# Svelte kit
+.svelte-kit
+
+# === DATABASE ===
+# SQLite databases
+*.sqlite
+*.sqlite3
+*.db
+
+# Redis dump file
+dump.rdb
+
+# === OS GENERATED FILES ===
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# === EDITOR/IDE ===
+# VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+
+# JetBrains IDEs
+.idea/
+*.swp
+*.swo
+*~
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*.swn
+.vim/
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# === TEMPORARY/CACHE FILES ===
+# Temporary files
+*.tmp
+*.temp
+temp/
+tmp/
+
+# Log files
+logs/
+*.log
+
+# Cache directories
+.cache/
+*.cache
+
+# === DEPLOYMENT & CI/CD ===
+# Docker
+.dockerignore
+Dockerfile.*
+docker-compose.override.yml
+
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraformrc
+terraform.rc
+
+# === MISCELLANEOUS ===
+# Backup files
+*.bak
+*.backup
+*.old
+
+# Archive files
+*.zip
+*.tar
+*.gz
+*.rar
+*.7z
+
+# Large media files (add specific ones as needed)
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.mp3
+*.wav
+*.flac
+
+# Config files that might contain secrets
+config.json
+config.yml
+config.yaml
+secrets.json
+secrets.yml
+secrets.yaml
